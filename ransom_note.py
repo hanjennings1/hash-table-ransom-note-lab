@@ -19,4 +19,8 @@ def can_construct(ransomNote: str, magazine: str) -> bool:
         else:
             letter_counts[char] = 1     # no (new letter): add it with a count of 1
 
-    print(letter_counts)
+    # Check each letter of the note against the magazine's count:
+    for char in ransomNote:                               # loop through each note character
+        if char not in letter_counts or letter_counts[char] == 0:   # missing or used up:
+            return False                                  # can't build the note, stop now
+        letter_counts[char] -= 1                          # use one copy of this letter
