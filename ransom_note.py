@@ -24,3 +24,5 @@ def can_construct(ransomNote: str, magazine: str) -> bool:
         if char not in letter_counts or letter_counts[char] == 0:   # missing or used up:
             return False                                  # can't build the note, stop now
         letter_counts[char] -= 1                          # use one copy of this letter
+
+    return True     # every letter was available, so the note is built
