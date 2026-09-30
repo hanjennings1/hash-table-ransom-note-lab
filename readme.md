@@ -1,89 +1,52 @@
 # Lab: Hash Tables – Ransom Note Construction  
-**Lab GitHub Repo**: [Hash Tables – Ransom Note](https://github.com/learn-co-curriculum/hash-table-ransom-note-lab)
+**Completed Sept 30, 3036**
 
----
+<br>
 
 ## Overview
-In this lab, you’ll apply **hash tables** to solve a classic technical challenge. You’ll implement a function that determines whether a **ransom note** can be constructed using the letters from a given **magazine**—with each letter only used once.
+A Python function that determines whether a ransom note can be built using the letters from a magazine, where each letter in the magazine can only be used once.
 
-This is a realistic application of **frequency counting** and **fast lookup** using key-value data structures. Hash tables are essential in real-world systems where performance matters, such as caching, text indexing, or validating data availability.
+## How It Works
 
----
+The function `can_construct(ransomNote, magazine)` in `ransom_note.py` uses a **hash table (dictionary)** to solve the problem in three steps:
 
-## Task 1: Define the Problem
+1. **Count the magazine letters.** It loops through the magazine and builds a dictionary of letter counts, e.g. `"aab"` → `{'a': 2, 'b': 1}`.
+2. **Check the note against the counts.** It loops through the ransom note one letter at a time. If a letter is missing from the dictionary or its count has reached 0, it returns `False` immediately. Otherwise, it decrements that letter's count by 1.
+3. **Return the result.** If every letter in the note is found, it returns `True`.
 
-1. Implement a function that returns `True` if a `ransomNote` can be built using letters from `magazine`, and `False` otherwise.
-2. Each letter in `magazine` may only be used **once**.
-3. You must use a **hash table (dictionary)** to track character counts.
+Using a dictionary makes each lookup fast, so the function runs in O(n + m) time, where n and m are the lengths of the note and magazine.
 
-**The Challenge**: Demonstrate your ability to use a hash table for character tracking and conditional logic to support a frequency-matching use case.
+### Examples
 
----
+```python
+can_construct("treasure", "the rare stones were hidden under a tree")            # True
+can_construct("coffee", "a cup of hot tea")                                      # False (only has one f)
+can_construct("moonlight", "the old lighthouse glowed under the moon at night")  # True
+```
 
-## Task 2: Determine the Design
+## Project Files
 
-### Hash Table Functionality
+- `ransom_note.py` – the `can_construct` function
+- `test_ransom_note.py` – test cases that check the function's output
+- `.gitignore` – excludes `__pycache__` and `.pyc` files
 
-- **File**: `ransom_note.py`
-- **Function**:  
-  - `can_construct(ransomNote: str, magazine: str) -> bool`  
-  - Returns `True` if the ransom note can be formed from magazine letters, `False` otherwise.
+## Setup
 
----
+Requires Python 3.
 
-## Task 3: Develop, Test, and Refine the Code
+1. Clone the repository:
+```
+   git clone https://github.com/hanjennings1/hash-table-ransom-note-lab.git
+```
+2. Move into the project folder:
+```
+   cd hash-table-ransom-note-lab
+```
 
-### Set Up
+## Running the Tests
 
-#### Fork and Clone
-1. Go to the provided **GitHub repository link**.  
-2. Fork the repository to your GitHub account.  
-3. Clone the forked repository to your local machine.
+```
+python test_ransom_note.py
+```
 
-#### Open and Run
-1. Open the project in your Python-friendly IDE (VSCode, PyCharm, etc.).  
-
-### Implementation Details
-
-1. **Starter code uses `pass`**:
-   - You’ll see `pass` in the `can_construct` function.
-   - Replace it with your actual logic.
-
-2. **Build the function**:
-   - Track letter counts using a dictionary.
-   - Decrement counts as you check the ransom note.
-   - Return `False` early if a character is missing or depleted.
-
-3. **Run Tests**:
-   - Execute the test file with:
-     ```bash
-     python test_ransom_note.py
-     ```
-   - Ensure all tests pass before submission.
-
-4. **Push and Merge**:
-   - Commit your work regularly.
-   - Push to your feature branch.
-   - Open a Pull Request (PR).
-   - Merge to `main` after review.
-
----
-
-## Task 4: Document and Maintain
-
-### Best Practice Documentation Steps
-
-- **Comment your logic**: Especially around the hash table operations.
-- **Explain your thinking** in your function definitions.
-- **README**: Ensure this file accurately reflects how to run the project.
-- **Clean Up**:
-  - Remove any debug prints.
-  - Make sure `.gitignore` ignores `.pyc`, `__pycache__`, etc.
-
----
-
-## Submission
-Once your lab is complete and all tests are passing:
-
-- Push your code to GitHub.
-- Submit the link to your repo through **Canvas using CodeGrade**.
+If all tests pass, the final line of output will be `🎉 All tests passed!`
